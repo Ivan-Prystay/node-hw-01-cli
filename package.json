@@ -1,7 +1,7 @@
 {
   "name": "node.js-hw-01-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "My first Node js application",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Ivan-Prystay/node.js-HW-01-CLI.git"
   },
-  "author": "",
+  "author": "Ivan-Prystay",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ivan-Prystay/node.js-HW-01-CLI/issues"

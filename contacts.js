@@ -1,8 +1,9 @@
 const fs = require("fs");
+const path = require("path");
 
-const contacts = require("./db/contacts.json");
+const contactsPath = path.dirname("contacts.json");
 
-// const contactsPath = ;
+console.log("contactsPath: ", contactsPath);
 
 // TODO: задокументувати кожну функцію
 
@@ -21,5 +22,3 @@ function removeContact(contactId) {
 function addContact(name, email, phone) {
   // ...твій код
 }
-
-module.exports = contacts;
