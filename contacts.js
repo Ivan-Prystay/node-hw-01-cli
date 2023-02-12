@@ -44,10 +44,6 @@ async function removeContact(contactId) {
   }
   const [deletedContact] = contacts.splice(index, 1);
   await fs.writeFile(contactsPath, JSON.stringify(contacts));
-
-  console.table(contacts);
-  console.log("Log contacts.js", deletedContact);
-
   return deletedContact;
 }
 
