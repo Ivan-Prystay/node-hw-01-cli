@@ -1,14 +1,27 @@
 const yargs = require("yargs");
 const { hideBin } = require("yargs/helpers");
 
+const colorMessage = {
+  red: "\x1B[41m",
+  green: "\x1B[42m",
+  yellow: "\x1B[43m\x1B[36m",
+};
+
 const contactsOperations = require("./contacts");
 
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
+    //!     get All
+
     case "list":
       const contacts = await contactsOperations.listContacts();
       console.table(contacts);
+      console.log(
+        `${colorMessage.green}Congratulation, found ${contacts.length} contacts!`
+      );
       break;
+
+    //!             get  ID
 
     case "get":
       try {
@@ -18,18 +31,22 @@ async function invokeAction({ action, id, name, email, phone }) {
         }
         console.table(contact);
       } catch (error) {
-        console.error("\x1B[31m Error: ", error.message);
+        console.error(`${colorMessage.red} Error: `, error.message);
       }
       break;
 
+    //!         add  Contact
+
     case "add":
-      const newContact = await contactsOperations.addContact(
+      const newContact = await contactsOperations.addContact({
         name,
         email,
-        phone
-      );
+        phone,
+      });
       console.table(newContact);
       break;
+
+    //!         remove  Contact
 
     case "remove":
       try {
@@ -39,15 +56,13 @@ async function invokeAction({ action, id, name, email, phone }) {
         }
         console.table(deletedContact);
       } catch (error) {
-        console.error("\x1B[31m Error: ", error.message);
+        console.error(`${colorMessage.red} Error: `, error.message);
       }
       break;
     default:
-      console.warn("\x1B[31m Unknown action type!");
+      console.warn(`${colorMessage.yellow} Unknown action type!`);
   }
 }
 
-const arr = hideBin(process.argv);
-const { argv } = yargs(arr);
-
+const { argv } = yargs(hideBin(process.argv));
 invokeAction(argv);
